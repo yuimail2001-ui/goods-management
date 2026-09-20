@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\GoodsController;
+use App\Http\Controllers\TradingCardController;
 
 
 Route::get('/user', function (Request $request) {
@@ -12,3 +13,4 @@ Route::get('/user', function (Request $request) {
 
 Route::apiResource('tours', TourController::class);
 Route::apiResource('goods', GoodsController::class);
+Route::apiResource('trading-cards', TradingCardController::class);
