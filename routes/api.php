@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TourController;
+use App\Http\Controllers\GoodsController;
 
 
 Route::get('/user', function (Request $request) {
@@ -10,3 +11,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::apiResource('tours', TourController::class);
+Route::apiResource('goods', GoodsController::class);
