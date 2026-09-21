@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreGoodsRequest;
 use App\Http\Requests\UpdateGoodsRequest;
 use App\Models\Goods;
@@ -11,9 +12,11 @@ class GoodsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $goods = Goods::all();
+        $goods = Goods::when($request->query('tour_id'), function ($query, $tourId) {
+            return $query->where('tour_id', $tourId);
+        })->get();
 
         return response()->json($goods);
     }

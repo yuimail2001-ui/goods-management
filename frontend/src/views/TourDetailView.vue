@@ -1,17 +1,25 @@
 <script setup>
-// モック用の仮データ(API連携は未実装)
-const tour = {
-  name: '氷結の絆 -Frozen Bond-',
-  start_date: '2026-01-10',
-  end_date: '2026-01-12',
-}
+import { ref,onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+import apiClient from '../services/api'
+const tour = ref({})
 
-const goods = [
-  { id: 1, name: 'アクリルスタンド', price: 1800 },
-  { id: 2, name: 'Tシャツ -Frozen Bond ver.-', price: 4500 },
-  { id: 3, name: 'ペンライト', price: 3200 },
-  { id: 4, name: 'トレーディング缶バッジ', price: 800 },
-]
+const route = useRoute()
+const tourId = route.params.id
+const goods = ref([])
+
+onMounted(async () => {
+  const response = await apiClient.get(`/tours/${tourId}`)
+  tour.value = response.data
+
+  const goodsResponse = await apiClient.get(`/goods`,{
+    params:{
+        tour_id:tourId
+    },
+  })
+  goods.value = goodsResponse.data
+})
+
 </script>
 
 <template>
