@@ -21,13 +21,15 @@ onMounted(async () => {
 
     <ul class="tour-list__items">
       <li v-for="(tour, index) in tours" :key="tour.id" class="tour-card">
-        <span class="tour-card__index">{{ String(index + 1).padStart(2, '0') }}</span>
-        <div class="tour-card__body">
-          <p class="tour-card__name" translate="no">{{ tour.name }}</p>
-          <p class="tour-card__period">
-            {{ tour.start_date }} <span class="tour-card__wave">〜</span> {{ tour.end_date }}
-          </p>
-        </div>
+        <router-link :to="`/tours/${tour.id}`" class="tour-card__link">
+          <span class="tour-card__index">{{ String(index + 1).padStart(2, '0') }}</span>
+          <div class="tour-card__body">
+            <p class="tour-card__name" translate="no">{{ tour.name }}</p>
+            <p class="tour-card__period">
+              {{ tour.start_date }} <span class="tour-card__wave">〜</span> {{ tour.end_date }}
+            </p>
+          </div>
+        </router-link>
       </li>
     </ul>
   </main>
@@ -73,15 +75,20 @@ onMounted(async () => {
 }
 
 .tour-card {
+  border-bottom: 1px solid #d8d8d4;
+}
+
+.tour-card__link {
   display: flex;
   align-items: baseline;
   gap: 20px;
   padding: 20px 4px;
-  border-bottom: 1px solid #d8d8d4;
+  text-decoration: none;
+  color: inherit;
   transition: background-color 0.2s ease, padding-left 0.2s ease;
 }
 
-.tour-card:hover {
+.tour-card__link:hover {
   background-color: #f2f1ec;
   padding-left: 12px;
 }
