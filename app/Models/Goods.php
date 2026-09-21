@@ -18,6 +18,7 @@ class Goods extends Model
         'purchase_status',
         'purchased_at',
         'description',
+        'image_path',
     ];
 
     public function tour(): BelongsTo

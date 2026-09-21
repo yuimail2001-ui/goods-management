@@ -23,13 +23,17 @@ class StoreGoodsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tour_id' => ['required', 'integer', 'exists:tours,id'],
+            'tour_id' => ['required_without:new_tour_name', 'nullable', 'integer', 'exists:tours,id'],
+            'new_tour_name' => ['required_without:tour_id', 'nullable', 'string', 'max:255'],
+            'new_tour_start_date' => ['nullable', 'date'],
+            'new_tour_end_date' => ['nullable', 'date', 'after_or_equal:new_tour_start_date'],
             'name' => ['required', 'string', 'max:255'],
             'category' => ['required', 'string'],
             'price' => ['required', 'numeric'],
             'purchase_status' => ['required', 'in:unpurchased,purchased'],
             'purchased_at' => ['nullable', 'date'],
             'description' => ['nullable', 'string'],
+            'image' => ['nullable', 'image', 'max:5120'],
         ];
     }
 }
