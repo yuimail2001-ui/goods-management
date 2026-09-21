@@ -20,6 +20,17 @@ onMounted(async () => {
   goods.value = goodsResponse.data
 })
 
+const imageUrl = (item) => {
+  return item.image_path ? `http://localhost/storage/${item.image_path}` : null
+}
+
+const onDelete = async (item) => {
+  if (!window.confirm(`「${item.name}」を削除しますか？`)) return
+
+  await apiClient.delete(`/goods/${item.id}`)
+  goods.value = goods.value.filter((g) => g.id !== item.id)
+}
+
 </script>
 
 <template>
@@ -36,9 +47,17 @@ onMounted(async () => {
       <p class="goods-section__label">GOODS</p>
       <ul class="goods-grid">
         <li v-for="item in goods" :key="item.id" class="goods-card">
-          <div class="goods-card__image"></div>
+          <div class="goods-card__image">
+            <img v-if="imageUrl(item)" :src="imageUrl(item)" class="goods-card__image-tag" />
+          </div>
           <p class="goods-card__name" translate="no">{{ item.name }}</p>
           <p class="goods-card__price">¥{{ item.price.toLocaleString() }}</p>
+          <div class="goods-card__actions">
+            <router-link :to="`/goods/${item.id}/edit`" class="goods-card__action">編集</router-link>
+            <button type="button" class="goods-card__action goods-card__action--delete" @click="onDelete(item)">
+              削除
+            </button>
+          </div>
         </li>
       </ul>
     </section>
@@ -117,6 +136,13 @@ onMounted(async () => {
   background-color: #e8e7e2;
   border: 1px solid #d8d8d4;
   margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.goods-card__image-tag {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .goods-card__name {
@@ -132,5 +158,27 @@ onMounted(async () => {
   color: #6b6b6b;
   font-family: Georgia, serif;
   letter-spacing: 0.05em;
+}
+
+.goods-card__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.goods-card__action {
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: #6b6b6b;
+  background: none;
+  border: none;
+  padding: 0;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.goods-card__action--delete {
+  color: #a33;
 }
 </style>

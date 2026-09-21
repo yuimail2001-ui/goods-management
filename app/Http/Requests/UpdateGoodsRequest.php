@@ -29,7 +29,8 @@ class UpdateGoodsRequest extends FormRequest
             'price' => ['required', 'numeric'],
             'purchase_status' => ['required', 'in:unpurchased,purchased'],
             'purchased_at' => ['nullable', 'date'],
-            'description' => ['nullable', 'string'],    
+            'description' => ['nullable', 'string'],
+            'image' => ['nullable', 'image', 'max:5120'],
         ];
     }
 }

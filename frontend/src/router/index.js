@@ -23,6 +23,16 @@ const router = createRouter({
       component: () => import('../views/TourListView.vue'),
     },
     {
+      path: '/tours/manage',
+      name: 'goods-form',
+      component: () => import('../views/GoodsFormView.vue'),
+    },
+    {
+      path: '/goods/:id/edit',
+      name: 'goods-edit',
+      component: () => import('../views/GoodsFormView.vue'),
+    },
+    {
       path: '/tours/:id',
       name: 'tour-detail',
       component: () => import('../views/TourDetailView.vue'),
