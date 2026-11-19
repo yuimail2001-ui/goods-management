@@ -23,11 +23,12 @@ class StoreTradingCardRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'card_code' => ['required', 'string', 'unique:trading_cards,card_code'],
             'member_name' => ['required', 'string'],
             'tour_id' => ['required', 'exists:tours,id'],
-            'possession_status' => ['required', 'in:not_owned,owned'],
+            'possession_status' => ['nullable', 'in:not_owned,owned'],
             'description' => ['nullable', 'string'],
+            'owned_count' => ['nullable', 'integer', 'min:0'],
+            'image' => ['nullable', 'image', 'max:5120'],
         ];
     }
 }

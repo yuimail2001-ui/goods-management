@@ -38,6 +38,16 @@ const router = createRouter({
       component: () => import('../views/TradingCardListView.vue'),
     },
     {
+      path: '/trading-cards/manage',
+      name: 'trading-card-form',
+      component: () => import('../views/TradingCardFormView.vue'),
+    },
+    {
+      path: '/trading-cards/:id/edit',
+      name: 'trading-card-edit',
+      component: () => import('../views/TradingCardFormView.vue'),
+    },
+    {
       path: '/tours/:id',
       name: 'tour-detail',
       component: () => import('../views/TourDetailView.vue'),
