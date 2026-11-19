@@ -33,6 +33,11 @@ const router = createRouter({
       component: () => import('../views/GoodsFormView.vue'),
     },
     {
+      path: '/trading-cards',
+      name: 'trading-cards',
+      component: () => import('../views/TradingCardListView.vue'),
+    },
+    {
       path: '/tours/:id',
       name: 'tour-detail',
       component: () => import('../views/TourDetailView.vue'),
