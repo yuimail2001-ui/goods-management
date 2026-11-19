@@ -16,6 +16,12 @@ class TradingCard extends Model
         'tour_id',
         'possession_status',
         'description',
+        'image_path',
+        'owned_count',
+    ];
+
+    protected $casts = [
+        'owned_count' => 'integer',
     ];
 
     public function tour(): BelongsTo
