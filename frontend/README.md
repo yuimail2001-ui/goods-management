@@ -1,44 +1,27 @@
 # frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+推し活グッズ管理システムのフロントエンド（Vue 3 + Vite）です。
+プロジェクト全体の説明・セットアップ手順は、リポジトリ直下の [README.md](../README.md) を参照してください。
 
-## Recommended IDE Setup
+## 構成
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+| ディレクトリ | 内容 |
+| --- | --- |
+| `src/views/` | 画面単位のコンポーネント |
+| `src/components/` | 画面をまたいで使う共通コンポーネント（`AppNav.vue` など） |
+| `src/router/` | 画面遷移（ルーティング）の定義 |
+| `src/services/` | API通信の共通処理（axiosのインスタンス） |
+| `src/assets/` | CSS・画像 |
 
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+## コマンド
 
 ```sh
-npm install
+npm install      # 依存パッケージのインストール
+npm run dev      # 開発サーバー起動
+npm run build    # 本番用ビルド
+npm run lint     # ESLint / oxlint で検査・自動修正
+npm run format   # Prettier で整形
 ```
 
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+バックエンドのAPIは `src/services/api.js` の `baseURL` を参照しています。
+Laravel Sail の起動ポートに合わせて設定してください。
